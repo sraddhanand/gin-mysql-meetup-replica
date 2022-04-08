@@ -1,0 +1,50 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql
+spec:
+  destination:
+    name: ''
+    namespace: meetup
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: mysql
+    repoURL: 'https://github.com/sraddhanand/helm_charts'
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - Validate=false
+
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'gin'
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/sraddhanand/helm_charts'
+    path: go-gin
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: meetup
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

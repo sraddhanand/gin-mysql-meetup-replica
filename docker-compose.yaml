@@ -1,32 +1,32 @@
 version: '3.8'
 services:
-  rt_msql:
-    container_name: rtm1
+  mtu_msql:
+    container_name: mtum1
     image: mysql:8.0.28
     environment:
       - MYSQL_ROOT_PASSWORD=StrongRootPass
-      - MYSQL_DATABASE=rtdb
-      - MYSQL_USER=rtadm
-      - MYSQL_PASSWORD=rtadmusrPass
-    ports:
+      - MYSQL_DATABASE=mtudb
+      - MYSQL_USER=mtuadm
+      - MYSQL_PASSWORD=mtuadmusrPass
+    pomtus:
       - 3306:3306
     volumes:
       - dataVolume:/var/lib/mysql
-  rt_gin:
-    container_name: rtg1
+  mtu_gin:
+    container_name: mtug1
     image: golang:1.17.6-stretch
     command: /bin/bash
     stdin_open: true
     tty: true
     environment:      
-      - DATABASE_HOST=rt_msql
-      - DATABASE_PORT=3306
-      - DATABASE_NAME=rtdb
-      - DATABASE_USER=rtadm
-      - DATABASE_PASS=rtadmusrPass
+      - DATABASE_HOST=mtu_msql
+      - DATABASE_POmtu=3306
+      - DATABASE_NAME=mtudb
+      - DATABASE_USER=mtuadm
+      - DATABASE_PASS=mtuadmusrPass
     depends_on:
-      - rt_msql
-    ports:
+      - mtu_msql
+    pomtus:
       - 8080:8080
     volumes:
       - ./gin/:/gin/
@@ -36,5 +36,5 @@ volumes:
 networks:
   default: 
     external: true
-    name: rt
+    name: mtu
 
