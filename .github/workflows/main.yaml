@@ -2,7 +2,10 @@ name: build-image-push
 
 on:
   schedule:
-    - cron: '*/5 15 * * 2'
+    - cron: '23 18 * * 2'
+
+env:
+  CUR_TUES_DATE: `date +'%d'`
 
 jobs:
   docker:
@@ -10,12 +13,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: pring values
+        run: echo ${{ env.CUR_TUES_DATE }}
       - name: docker login
+        if: env.CUR_TUES_DATE > 16 && env.CUR_TUES_DATE < 23
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
+        if: env.CUR_TUES_DATE > 16 && env.CUR_TUES_DATE < 23
         uses: docker/build-push-action@v2
         with:
           push: true
