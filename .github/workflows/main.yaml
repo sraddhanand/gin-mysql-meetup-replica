@@ -2,7 +2,7 @@ name: build-image-push
 
 on:
   schedule:
-    - cron: '*/5 13 19 * *'
+    - cron: '*/5 15 * * 2'
 
 jobs:
   docker:
