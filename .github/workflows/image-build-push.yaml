@@ -17,5 +17,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
         run: |
-          docker build -t sradhugeek/meetup:v${{ env.GITHUB_RUN_NUMBER }} -f Dockerfile .
-          docker push sradhugeek/meetup:v${{ env.GITHUB_RUN_NUMBER }}
+          `docker build -t sradhugeek/meetup:v${{ env.GITHUB_RUN_NUMBER }} -f Dockerfile .`
+          `docker push sradhugeek/meetup:v${{ env.GITHUB_RUN_NUMBER }}`
