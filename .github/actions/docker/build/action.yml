@@ -1,0 +1,42 @@
+name: Build and push Docker images
+description: Build and push Docker images with Buildx
+author: docker
+branding:
+  icon: 'anchor'
+  color: 'blue'
+
+inputs:
+  build-args:
+    description: "List of build-time variables"
+    required: false
+  working-directory:
+    description: "working directory/context path"
+    required: false
+    default: '.'
+  name:
+    description: "Name of the docker image"
+    required: true
+  push:
+    description: "boolean to push the image"
+    required: false
+    default: 'false'
+  dockerfile:
+    description: "Path to the Dockerfile"
+    required: false
+    default: Dockerfile
+  tag:
+    description: "image tag"
+    required: false
+    default: 'latest'
+
+outputs:
+  imageid:
+    description: 'Image ID'
+  digest:
+    description: 'Image digest'
+  metadata:
+    description: 'Build result metadata'
+
+runs:
+  using: 'node12'
+  main: 'index.js'

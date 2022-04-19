@@ -8,7 +8,7 @@ services:
       - MYSQL_DATABASE=mtudb
       - MYSQL_USER=mtuadm
       - MYSQL_PASSWORD=mtuadmusrPass
-    pomtus:
+    ports:
       - 3306:3306
     volumes:
       - dataVolume:/var/lib/mysql
@@ -26,7 +26,7 @@ services:
       - DATABASE_PASS=mtuadmusrPass
     depends_on:
       - mtu_msql
-    pomtus:
+    ports:
       - 8080:8080
     volumes:
       - ./gin/:/gin/
@@ -36,5 +36,4 @@ volumes:
 networks:
   default: 
     external: true
-    name: mtu
-
+    name: religious
