@@ -16,6 +16,6 @@ jobs:
       - name: pring values
         run: |
           echo ${{ env.CUR_TUES_DATE }}
-          export CUR_TUES_DATE=`date +%d`
+          export CUR_TUES_DATE=${{ date +%d }}
           echo ${{ env.CUR_TUES_DATE }}
       
