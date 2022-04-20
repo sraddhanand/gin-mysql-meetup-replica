@@ -1,0 +1,21 @@
+name: on-push-shell
+
+on:
+  push:
+    branches:
+      - main
+      - gh_actions
+
+env:
+  CUR_TUES_DATE: 0
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pring values
+        run: |
+          echo ${{ env.CUR_TUES_DATE }}
+          export CUR_TUES_DATE=`date +%d`
+          echo ${{ env.CUR_TUES_DATE }}
+      
