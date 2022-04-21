@@ -17,14 +17,15 @@ jobs:
         if: env.CUR_TUES_DATE > 16 && env.CUR_TUES_DATE < 23
         run: |
           echo ${{ env.CUR_TUES_DATE }}
-          export CUR_TUES_DATE=`date +'%d'`
+          export CUR_TUES_DATE=`date +'%d' | sed 's/^0*//'`
           echo ${{ env.CUR_TUES_DATE }}
       - name: test values
         run: |
           if [ `date +'%d' | sed 's/^0*//'` -le 22 ]; then
             echo ${{ env.CUR_TUES_DATE }}
-            export CUR_TUES_DATE=`date +%d`
+            export CUR_TUES_DATE=`date +'%d' | sed 's/^0*//'`
             echo ${{ env.CUR_TUES_DATE }}
+            echo `date +'%d' | sed 's/^0*//'`
           else
             echo `date +'%d' | sed 's/^0*//'`
           fi
