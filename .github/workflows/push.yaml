@@ -21,7 +21,7 @@ jobs:
           echo ${{ env.CUR_TUES_DATE }}
       - name: test values
         run: |
-          if [ `date +'%d' | sed 's/^0*//'` -le 22 ]; then
+          if [ `date +'%d' | sed 's/^0*//'` -le 22 ] && [ `date +'%d' | sed 's/^0*//'` -ge 15 ]; then
             echo ${{ env.CUR_TUES_DATE }}
             export CUR_TUES_DATE=`date +'%d' | sed 's/^0*//'`
             echo ${{ env.CUR_TUES_DATE }}
