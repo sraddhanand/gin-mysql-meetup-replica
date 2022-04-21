@@ -20,13 +20,10 @@ jobs:
           export CUR_TUES_DATE=`date +'%d' | sed 's/^0*//'`
           echo ${{ env.CUR_TUES_DATE }}
       - name: test values
+        if: `date +'%d' | sed 's/^0*//'` -le 22 ] && [ `date +'%d' | sed 's/^0*//'` -ge 15
         run: |
-          if [ `date +'%d' | sed 's/^0*//'` -le 22 ] && [ `date +'%d' | sed 's/^0*//'` -ge 15 ]; then
             echo ${{ env.CUR_TUES_DATE }}
             export CUR_TUES_DATE=`date +'%d' | sed 's/^0*//'`
             echo ${{ env.CUR_TUES_DATE }}
             echo `date +'%d' | sed 's/^0*//'`
-          else
-            echo `date +'%d' | sed 's/^0*//'`
-          fi
-      
+          
